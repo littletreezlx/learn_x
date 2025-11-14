@@ -1,0 +1,15 @@
+Hello World! This is a sample text file for testing.
+C++ is a powerful programming language.
+It supports object-oriented programming, generic programming, and procedural programming.
+
+This file contains multiple lines.
+Some lines are longer than others.
+Programming in C++ can be very rewarding.
+
+The quick brown fox jumps over the lazy dog.
+This sentence contains every letter of the alphabet at least once.
+
+Numbers: 123 456 789
+Special characters: !@#$%^&*()
+
+End of sample file.

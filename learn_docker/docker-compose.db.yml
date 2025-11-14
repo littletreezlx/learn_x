@@ -1,0 +1,71 @@
+# 数据库集成 Docker Compose 配置
+# 使用方法: docker-compose -f docker-compose.yml -f docker-compose.db.yml up
+
+version: '3.8'
+
+services:
+  # 应用服务配置覆盖
+  app:
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/dockerdemo
+      - SPRING_DATASOURCE_USERNAME=demo_user
+      - SPRING_DATASOURCE_PASSWORD=demo_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    networks:
+      - app-network
+
+  # PostgreSQL 数据库服务
+  postgres:
+    image: postgres:13-alpine
+    container_name: docker-demo-postgres
+    environment:
+      - POSTGRES_DB=dockerdemo
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=demo_password
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demo_user -d dockerdemo"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis 缓存服务（可选）
+  redis:
+    image: redis:6-alpine
+    container_name: docker-demo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# 数据卷定义
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# 网络定义
+networks:
+  app-network:
+    driver: bridge

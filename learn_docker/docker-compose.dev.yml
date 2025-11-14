@@ -1,0 +1,37 @@
+# 开发环境 Docker Compose 配置
+# 使用方法: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+version: '3.8'
+
+services:
+  app:
+    # 开发环境配置覆盖
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - JAVA_OPTS=-Xmx512m -Xms256m -Dspring.profiles.active=dev
+    
+    # 开发环境端口映射
+    ports:
+      - "8080:8080"
+    
+    # 开发环境资源限制（更宽松）
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # 开发环境卷挂载（热重载支持）
+    volumes:
+      - ./src:/app/src:ro
+      - ./target:/app/target
+    
+    # 开发环境健康检查（更频繁）
+    healthcheck:
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s

@@ -1,0 +1,45 @@
+# C++ 项目 .gitignore
+
+# 编译产物
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# 构建目录
+build/
+dist/
+cmake-build-*/
+target/
+
+# IDE 文件
+.vscode/
+.idea/
+*.vcxproj*
+*.sln
+*.pro.user*
+
+# macOS
+.DS_Store
+*.dSYM/
+
+# 调试文件
+*.pdb
+*.ilk
+
+# 临时文件
+*.tmp
+*.temp
+*~
+.#*
+
+# 日志文件
+*.log
+
+# 备份文件
+*.bak
+*.backup

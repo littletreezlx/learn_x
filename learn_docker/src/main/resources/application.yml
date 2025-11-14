@@ -1,0 +1,137 @@
+# 默认配置文件
+# 适用于本地开发环境
+
+spring:
+  # 应用配置
+  application:
+    name: docker-demo
+  
+  # 配置文件激活
+  profiles:
+    active: @spring.profiles.active@
+  
+  # 默认使用 H2 内存数据库
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  # H2 控制台配置
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  
+  # 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 应用信息
+info:
+  app:
+    name: Docker Demo Application
+    description: 学习 Docker 的示例应用
+    version: 1.0.0
+    environment: default
+
+# 日志配置
+logging:
+  level:
+    com.example.demo: INFO
+    org.springframework: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# 开发环境配置
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: 8080
+
+info:
+  app:
+    environment: development
+    
+logging:
+  level:
+    com.example.demo: DEBUG
+    org.springframework: INFO
+
+---
+# 生产环境配置
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # 生产环境数据库配置
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/dockerdemo}
+    username: ${SPRING_DATASOURCE_USERNAME:demo_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:demo_password}
+    driver-class-name: org.postgresql.Driver
+    
+  # 生产环境 JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+server:
+  port: 8080
+  # 生产环境服务器优化
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 10
+
+info:
+  app:
+    environment: production
+
+# 生产环境日志配置
+logging:
+  level:
+    com.example.demo: INFO
+    org.springframework: WARN
+    org.apache: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# 测试环境配置
+spring:
+  config:
+    activate:
+      on-profile: test
+
+server:
+  port: 8081
+
+info:
+  app:
+    environment: testing
+
+logging:
+  level:
+    com.example.demo: DEBUG
+    org.springframework: DEBUG

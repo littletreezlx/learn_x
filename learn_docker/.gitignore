@@ -1,0 +1,81 @@
+# Docker 项目 .gitignore
+
+# Learning progress
+.learning-progress.json
+
+# 容器和镜像
+*.tar
+
+# 日志文件
+*.log
+logs/
+
+# 环境变量
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 密钥和证书
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+secrets/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+
+# Build artifacts
+target/
+build/
+dist/
+
+# Docker volumes (如果不小心提交了)
+data/
+postgres-data/
+redis-data/
+mongo-data/
+
+# Node.js (如果有Node应用)
+node_modules/
+npm-debug.log*
+
+# Java (如果有Java应用)
+*.class
+*.jar
+target/
+
+# Python (如果有Python应用)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*~
+.#*
