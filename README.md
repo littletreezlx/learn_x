@@ -32,7 +32,7 @@
 |------|--------|---------|------|---------|
 | **[learn_cpp](learn_cpp/)** | C++17 | 10-14天 | ✅ 完整框架 | 指针、内存管理、STL、类设计 |
 | **[learn_docker](learn_docker/)** | Docker, Docker Compose | 5-7天 | ✅ 有示例 | 容器化、镜像构建、多容器编排 |
-| **[learn_nextjs](learn_nextjs/)** | Next.js 13+, React | 15-20天 | ✅ 完整教程 | SSR/SSG、路由、全栈开发 |
+| **[learn_nextjs](learn_nextjs/)** | Next.js 13+, React | 7-10天 | ✅ ✨ 已重构 | 统一编号、全栈开发、Java开发友好 |
 | **[learn_vue](learn_vue/)** | Vue 3 | 7-10天 | 🔄 基础框架 | 组件化、响应式、Composition API |
 | **[learn_ios](learn_ios/)** | Swift, SwiftUI | 10-14天 | ✅ 完整框架 | Swift语法、SwiftUI、数据管理、网络 |
 | **[learn_go](learn_go/)** | Go 1.21+ | 7-10天 | ✅ 完整框架 | 并发、接口、错误处理 |
@@ -122,21 +122,24 @@ cat QUICK_START.md     # 30分钟快速上手
 
 ### 3. Learn Next.js ([learn_nextjs](learn_nextjs/))
 
-**适合人群**: Web开发者，想学习现代全栈框架
+**适合人群**: Java/Spring 开发者，想快速掌握全栈开发
 
 **核心内容**:
+- **统一编号学习系统** (01-13 顺序学习)
+- **面向 Java 开发者** (概念对比、思维转变)
 - Next.js 13+ App Router
-- React 服务器组件和客户端组件
-- 数据获取和缓存策略
-- 认证、数据库集成、部署
+- React Server Components
+- 全栈实战项目 (博客系统)
 
 **学习资源**:
-- ✅ 系统化模块教程
-- ✅ 完整的全栈实战项目
-- ✅ TypeScript 严格模式
-- ✅ 测试和部署指南
+- ✅ **[30分钟快速上手](learn_nextjs/QUICK_START.md)** - 面向 Java 开发者
+- ✅ **[核心技能检查清单](learn_nextjs/CORE_CHECKLIST.md)** - 验证学习成果
+- ✅ **[统一编号示例](learn_nextjs/examples/)** - 13个渐进式学习示例
+- ✅ **完整实战项目** - 博客系统，可直接部署
 
-**预计时间**: 15-20天 (每天1-2小时)
+**预计时间**: 7-10天 (每天1-2小时)
+
+**特色**: 专为 Java 开发者设计，降低学习曲线，注重实战应用
 
 ---
 
