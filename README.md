@@ -8,6 +8,11 @@
 
 这是一个**个人技术学习工作区**，包含多个技术方向的学习项目。每个子项目都遵循**20%核心知识解决80%问题**的原则，帮助你快速上手并具备实战能力。
 
+### 个人背景
+- **最擅长**: Java, Kotlin
+- **熟练**: JavaScript, Python, C
+- **学习目标**: 个人兴趣驱动
+
 ### 学习目标
 - ✅ 广度优先，快速建立技术全景认知
 - ✅ 掌握每个技术的核心部分
@@ -30,6 +35,7 @@
 | **[learn_nextjs](learn_nextjs/)** | Next.js 13+, React | 15-20天 | ✅ 完整教程 | SSR/SSG、路由、全栈开发 |
 | **[learn_vue](learn_vue/)** | Vue 3 | 7-10天 | 🔄 基础框架 | 组件化、响应式、Composition API |
 | **[learn_ios](learn_ios/)** | Swift, SwiftUI | 10-14天 | ✅ 完整框架 | Swift语法、SwiftUI、数据管理、网络 |
+| **[learn_go](learn_go/)** | Go 1.21+ | 7-10天 | ✅ 完整框架 | 并发、接口、错误处理 |
 
 ---
 
@@ -251,7 +257,10 @@ learn_x/
 │   ├── CODE_PATTERNS/          # 常用代码模式
 │   ├── TROUBLESHOOTING.md      # 常见问题排查
 │   ├── CLAUDE.md               # C++ 学习助手规则
-│   └── examples/               # 示例代码
+│   └── examples/               # 示例代码（带编号）
+│       ├── 01_hello.cpp        # 编号表示学习顺序
+│       ├── 02_variables.cpp
+│       └── ...
 │
 ├── learn_docker/               # Docker 学习项目
 │   ├── README.md               # Docker 项目说明
@@ -268,6 +277,38 @@ learn_x/
 └── learn_vue/                  # Vue 学习项目
     ├── README.md               # Vue 项目说明
     └── examples/               # 示例代码
+```
+
+### 📌 示例文件编号说明
+
+所有子项目的示例文件都采用**统一编号**，方便你直观地看到学习顺序：
+
+**编号格式**：`<两位数>_<名称>.<扩展名>`
+
+**编号区间**（标准4阶段）：
+- **01-06**：基础语法（变量、函数、控制流、数据结构）
+- **07-09**：语言特色（结构体/类、接口、错误处理）
+- **10-12**：高级特性（并发、模块、高级用法）
+- **13-15**：实战进阶（可选）
+
+**示例**（Go）：
+```
+01_hello.go          → 从这里开始
+02_variables.go
+03_functions.go
+...
+07_structs.go        → 新阶段开始
+08_interfaces.go
+...
+10_goroutines.go     → 并发编程
+11_channels.go
+```
+
+**使用方式**：
+```bash
+cd learn_go/examples
+ls                   # 查看所有示例（自动按编号排序）
+go run 01_hello.go   # 按顺序运行
 ```
 
 ---

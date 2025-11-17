@@ -15,7 +15,7 @@
 - [ ] 验证安装: `g++ --version`
 - [ ] 成功编译并运行 Hello World
   ```bash
-  g++ -std=c++17 01_basics/examples/01_hello_world.cpp -o hello
+  g++ -std=c++17 examples/01_hello.cpp -o hello
   ./hello
   ```
 
@@ -34,21 +34,21 @@
 - [ ] **指针**: 理解指针就是内存地址
   - [ ] 能够声明和使用指针: `int* ptr = &value;`
   - [ ] 理解解引用: `*ptr` 访问指针指向的值
-  - [ ] 运行 `02_memory_management/examples/02_pointer_arithmetic.cpp`
+  - [ ] 运行 `examples/07_pointers.cpp`
 
 - [ ] **引用**: 理解引用是变量的别名
   - [ ] 知道引用和指针的区别 (引用不能为空，不能重新绑定)
-  - [ ] 运行 `01_basics/examples/08_references.cpp`
+  - [ ] 运行 `examples/08_references.cpp`
 
 - [ ] **动态内存**: 理解栈和堆的区别
   - [ ] 掌握 `new/delete` 的使用
   - [ ] 知道内存泄漏的概念
-  - [ ] 运行 `02_memory_management/examples/03_dynamic_allocation.cpp`
+  - [ ] 运行 `examples/10_dynamic_memory.cpp`
 
 - [ ] **智能指针**: 现代C++的内存管理
   - [ ] 理解 `std::unique_ptr` (独占所有权)
   - [ ] 理解 `std::shared_ptr` (共享所有权)
-  - [ ] 运行 `02_memory_management/examples/05_smart_pointers.cpp`
+  - [ ] 运行 `examples/11_smart_pointers.cpp`
 
 **验收**: 能够解释什么是内存泄漏，并知道如何使用智能指针避免
 

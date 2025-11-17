@@ -24,11 +24,19 @@ learn_cpp/
 ├── TROUBLESHOOTING.md       # 5个最常见问题排查 ⭐ 遇到问题看这里
 ├── LEARNING_PATH.md         # 详细学习路线图 (深入学习参考)
 │
-├── 01_basics/               # C++基础 (已有示例代码)
-├── 02_memory_management/    # 内存管理 (已有示例代码)
-├── 03_oop/                  # 面向对象
-├── 04_advanced_features/    # 高级特性
-└── ...                      # 其他进阶内容
+├── examples/                # 15个核心示例文件 (01-15)
+│   ├── 01_hello.cpp         # Hello World
+│   ├── 07_pointers.cpp      # 指针基础 ⭐
+│   ├── 11_smart_pointers.cpp # 智能指针 ⭐
+│   └── 15_oop_intro.cpp     # OOP基础
+├── exercises/               # 练习题文件
+│   ├── 02_calculator.cpp    # 计算器练习
+│   └── 10_simple_vector.cpp # 简单vector实现
+├── solutions/               # 练习解答
+│   └── 02_calculator_solution.cpp
+│
+├── backup_*/                # 原始文件备份
+└── RENAME_PLAN.md          # 重命名方案文档
 ```
 
 ---
@@ -39,13 +47,13 @@ learn_cpp/
 - [ ] 阅读 [QUICK_START.md](QUICK_START.md)
 - [ ] 完成环境搭建
 - [ ] 运行 Hello World
-- [ ] 运行 `01_basics/examples/01_hello_world.cpp`
+- [ ] 运行 `examples/01_hello.cpp`
 
 ### 第2-5天: 核心概念
 - [ ] 按照 [CORE_CHECKLIST.md](CORE_CHECKLIST.md) 学习
 - [ ] 重点: 指针、智能指针、类、STL容器
-- [ ] 运行所有 `01_basics/examples/` 中的示例
-- [ ] 运行所有 `02_memory_management/examples/` 中的示例
+- [ ] 运行 `examples/07_pointers.cpp`（指针基础）
+- [ ] 运行 `examples/11_smart_pointers.cpp`（智能指针）
 
 ### 第6-10天: 实战项目
 - [ ] 选择一个核心项目完成 (见 CORE_CHECKLIST.md 阶段3)
