@@ -19,10 +19,26 @@
 - ✅ 能独立完成小型实际项目
 - ✅ 知道如何深入学习和查找资料
 
+### 核心理念
+
+**这是演示项目（Demo），不是测试项目（Test）**
+
+| 维度 | 测试项目 | learn_x |
+|------|---------|---------|
+| **目标** | 确保代码正确 | 快速验证概念 |
+| **心态** | 防御性（不能出错） | 探索性（试试看） |
+| **重点** | 完美的实现 | 能运行、能理解 |
+
+我们鼓励：
+- ✅ **试错和探索** - 代码不完美没关系，重点是理解概念
+- ✅ **即时反馈** - 快速运行、立即看到结果
+- ✅ **多次实验** - 改代码、试不同用法，深入理解
+
 ### 不是什么
 - ❌ 不是从零到专家的完整课程
 - ❌ 不追求每个技术的深度和广度
 - ❌ 不包含所有边缘特性和高级用法
+- ❌ 不要求代码完美或生产级质量
 
 ---
 
@@ -250,8 +266,9 @@ cat QUICK_START.md     # 30分钟快速上手
 ```
 learn_x/
 ├── README.md                    # 本文件 - 项目总览
-├── Claude.md                    # 顶层学习模式指导
+├── CLAUDE.md                    # 顶层学习模式指导
 ├── LEARNING_TRACKER.md          # 跨项目学习进度追踪
+├── DEMO_PLAYGROUND_DESIGN.md    # Demo Playground 设计思想
 │
 ├── learn_cpp/                   # C++ 学习项目
 │   ├── README.md               # C++ 项目说明
@@ -260,10 +277,13 @@ learn_x/
 │   ├── CODE_PATTERNS/          # 常用代码模式
 │   ├── TROUBLESHOOTING.md      # 常见问题排查
 │   ├── CLAUDE.md               # C++ 学习助手规则
-│   └── examples/               # 示例代码（带编号）
-│       ├── 01_hello.cpp        # 编号表示学习顺序
-│       ├── 02_variables.cpp
-│       └── ...
+│   ├── examples/               # 📖 示例代码（按编号线性学习）
+│   │   ├── 01_hello.cpp        # 编号表示学习顺序
+│   │   ├── 02_variables.cpp
+│   │   └── ...
+│   └── demos/                  # 🎮 交互式演示（规划中）
+│       ├── smart_pointers_playground.cpp
+│       └── containers_playground.cpp
 │
 ├── learn_docker/               # Docker 学习项目
 │   ├── README.md               # Docker 项目说明
@@ -282,7 +302,16 @@ learn_x/
     └── examples/               # 示例代码
 ```
 
-### 📌 示例文件编号说明
+### 📌 学习资源的双轨设计
+
+**两种互补的学习方式**（部分规划中）：
+
+| 资源类型 | 目的 | 使用场景 | 状态 |
+|---------|------|---------|------|
+| **examples/** | 线性学习路径 | 第一次学习某个概念，按顺序建立知识体系 | ✅ 已实现 |
+| **demos/** | 探索式工具 | 深入理解某个概念的各种用法，交互式实验 | 🔄 规划中 |
+
+**示例文件编号**（`examples/`）：
 
 所有子项目的示例文件都采用**统一编号**，方便你直观地看到学习顺序：
 
@@ -295,24 +324,34 @@ learn_x/
 - **13-15**：实战进阶（可选）
 
 **示例**（Go）：
-```
-01_hello.go          → 从这里开始
-02_variables.go
-03_functions.go
-...
-07_structs.go        → 新阶段开始
-08_interfaces.go
-...
-10_goroutines.go     → 并发编程
-11_channels.go
-```
-
-**使用方式**：
 ```bash
 cd learn_go/examples
 ls                   # 查看所有示例（自动按编号排序）
-go run 01_hello.go   # 按顺序运行
+
+# 📖 线性学习路径
+go run 01_hello.go          # 从这里开始
+go run 02_variables.go
+go run 07_structs.go        # 新阶段开始
+go run 10_goroutines.go     # 并发编程
 ```
+
+**Demo Playground**（`demos/` - 规划中）：
+
+交互式演示集合，一个文件包含多个 Demo，降低运行成本：
+
+```bash
+# 🎮 探索式学习（规划中）
+cd learn_cpp/demos
+./smart_pointers_playground     # 编译1次，交互式选择运行多个Demo
+
+# 菜单示例：
+# 1. unique_ptr 基础
+# 2. unique_ptr 移动
+# 3. shared_ptr 共享
+# 4. weak_ptr 弱引用
+```
+
+**详细设计**: 查看 [DEMO_PLAYGROUND_DESIGN.md](DEMO_PLAYGROUND_DESIGN.md)
 
 ---
 
