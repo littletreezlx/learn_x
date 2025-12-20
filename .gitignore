@@ -1,0 +1,28 @@
+# Build outputs
+cmake-build-*/
+build/
+dist/
+target/
+*.o
+*.so
+*.dylib
+
+# Dependencies
+node_modules/
+.gradle/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.temp

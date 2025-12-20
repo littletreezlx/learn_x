@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第二课：文件系统操作</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-button {
+      margin-bottom: 2rem;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .lesson-info {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .lesson-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ffd700;
+    }
+    .demo-section {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .demo-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      min-height: 60px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-size: 0.9rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+    textarea:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    .file-path {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+    .info-item {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .info-label {
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="back-button" id="btn-back">← 返回课程列表</button>
+    <h1>🚀 Learn Electron</h1>
+    
+    <div class="lesson-info">
+      <div class="lesson-title">📚 第二课：文件系统操作</div>
+      <div class="info-item">
+        <span class="info-label">平台:</span>
+        <span id="platform">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Node.js:</span>
+        <span id="node-version">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Chrome:</span>
+        <span id="chrome-version">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Electron:</span>
+        <span id="electron-version">-</span>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <div class="demo-title">📁 文件操作演示</div>
+      <p style="margin-bottom: 1rem; opacity: 0.9;">
+        学习如何使用 Electron 进行文件系统操作：选择文件、读取内容、保存文件、获取文件信息。
+      </p>
+      <div class="button-group">
+        <button id="btn-select-file">选择文件</button>
+        <button id="btn-read-file">读取文件</button>
+        <button id="btn-save-file">保存文件</button>
+        <button id="btn-file-info">文件信息</button>
+      </div>
+      <div class="file-path" id="file-path" style="display: none;">
+        <strong>当前文件:</strong> <span id="current-file">-</span>
+      </div>
+      <textarea id="file-content" placeholder="文件内容将显示在这里..."></textarea>
+      <div class="result-box" id="result">等待操作...</div>
+    </div>
+  </div>
+  <script type="module" src="./lesson02.ts"></script>
+</body>
+</html>
+

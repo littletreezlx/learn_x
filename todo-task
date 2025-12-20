@@ -1,0 +1,287 @@
+# Learn X 项目持续完善任务
+
+## STAGE ## name="文档系统优化" mode="parallel"
+# 🎯 阶段目标：完善各学习模块的文档系统
+# 📥 输入：已有的基础文档结构
+# 📤 输出：完整的规范文档和辅助文档
+
+## TASK ##
+为 learn_vue 创建完整文档
+
+**📖 背景**：
+learn_vue 模块缺少基础文档（README、CLAUDE.md），导致：
+- 学习者不知道如何开始
+- AI 无法有效辅助开发
+- 缺少系统性的学习路径
+
+**🔨 要做什么**：
+1. 分析 learn_vue 目录结构，了解现有内容
+2. 创建 learn_vue/README.md，包含：
+   - 模块目标和技术栈
+   - 目录结构说明
+   - 学习路线图
+   - 快速开始指南
+   - 学习进度追踪表格
+3. 创建 learn_vue/CLAUDE.md，参考 learn_cpp 和 learn_nextjs 的结构
+4. 更新根目录的 FEATURE_CODE_MAP.md，添加 Vue.js 相关映射
+
+**✅ 完成标志**：
+- learn_vue/README.md 存在且内容完整
+- learn_vue/CLAUDE.md 存在且包含 AI 操作指南
+- FEATURE_CODE_MAP.md 更新
+
+文件: learn_vue/**, FEATURE_CODE_MAP.md
+验证: ls learn_vue/README.md learn_vue/CLAUDE.md
+
+---
+
+## TASK ##
+为 learn_docker 创建完整文档
+
+**📖 背景**：
+learn_docker 模块缺少基础文档，需要补充。
+
+**🔨 要做什么**：
+1. 分析 learn_docker 目录结构
+2. 创建 learn_docker/README.md，包含：
+   - Docker 学习目标
+   - 目录结构和示例说明
+   - 学习路线图（基础→进阶→实战）
+   - 常用命令速查表
+   - 学习进度追踪
+3. 创建 learn_docker/CLAUDE.md
+4. 更新 FEATURE_CODE_MAP.md
+
+**✅ 完成标志**：
+- learn_docker/README.md 存在且内容完整
+- learn_docker/CLAUDE.md 存在
+- FEATURE_CODE_MAP.md 更新
+
+文件: learn_docker/**, FEATURE_CODE_MAP.md
+验证: ls learn_docker/README.md learn_docker/CLAUDE.md
+
+---
+
+## TASK ##
+整合 Git 学习项目
+
+**📖 背景**：
+存在多个 Git 相关目录（learn_git, learn_git_feature, learn_git_develop），需要整合为统一的学习模块。
+
+**🔨 要做什么**：
+1. 分析三个 Git 目录的内容差异
+2. 确定整合策略：
+   - 是否合并为一个目录
+   - 如何保留不同分支的实践内容
+3. 创建统一的 learn_git/README.md
+4. 创建 learn_git/CLAUDE.md
+5. 如果需要，将 learn_git_feature 和 learn_git_develop 的内容迁移到 learn_git
+6. 更新 FEATURE_CODE_MAP.md
+
+**✅ 完成标志**：
+- 有清晰的 Git 学习结构
+- learn_git/README.md 和 CLAUDE.md 存在
+- FEATURE_CODE_MAP.md 更新
+
+文件: learn_git/**, learn_git_feature/**, learn_git_develop/**, FEATURE_CODE_MAP.md
+验证: ls learn_git/README.md learn_git/CLAUDE.md
+
+---
+
+## STAGE ## name="规范文档创建" mode="serial"
+# 🎯 阶段目标：创建标准规范文档
+# 📥 输入：已完成的模块文档
+# 📤 输出：完整的规范文档体系
+
+## TASK ##
+创建学习内容规范文档
+
+**📖 背景**：
+需要统一的规范指导如何组织学习内容，确保各模块风格一致。
+
+**🔨 要做什么**：
+1. 创建 docs/standards/LEARNING_CONTENT_STANDARD.md
+2. 内容包括：
+   - 示例代码的组织方式
+   - 文件命名规范
+   - 注释规范（概念解释 + 实践建议）
+   - 如何编写学习笔记
+   - 如何记录常见陷阱
+3. 提供模板和示例
+4. 更新 docs/INDEX.md 添加该文档的引用
+
+**✅ 完成标志**：
+- docs/standards/LEARNING_CONTENT_STANDARD.md 存在
+- 内容清晰且有实际示例
+- docs/INDEX.md 已更新
+
+文件: docs/standards/LEARNING_CONTENT_STANDARD.md, docs/INDEX.md
+验证: cat docs/standards/LEARNING_CONTENT_STANDARD.md
+依赖: 无
+
+---
+
+## TASK ##
+创建模块结构规范文档
+
+**📖 背景**：
+需要规范如何创建新的学习模块，确保结构一致。
+
+**🔨 要做什么**：
+1. 创建 docs/standards/MODULE_STRUCTURE_STANDARD.md
+2. 内容包括：
+   - 新模块的必须文件（README, CLAUDE.md）
+   - 目录结构建议
+   - 学习路线图的编写方法
+   - 进度追踪的方式
+3. 提供模块模板
+4. 更新 docs/INDEX.md
+
+**✅ 完成标志**：
+- docs/standards/MODULE_STRUCTURE_STANDARD.md 存在
+- 包含可复用的模块模板
+- docs/INDEX.md 已更新
+
+文件: docs/standards/MODULE_STRUCTURE_STANDARD.md, docs/INDEX.md
+验证: cat docs/standards/MODULE_STRUCTURE_STANDARD.md
+依赖: 创建学习内容规范文档
+
+---
+
+## TASK ##
+创建文档编写规范
+
+**📖 背景**：
+需要统一的文档编写规范，确保文档质量。
+
+**🔨 要做什么**：
+1. 创建 docs/standards/DOCUMENTATION_STANDARD.md
+2. 内容包括：
+   - Markdown 格式规范
+   - 文档结构模板（README, CLAUDE.md）
+   - 如何写好的代码注释
+   - 如何编写学习路线图
+   - 如何维护 FEATURE_CODE_MAP.md
+3. 提供文档模板
+4. 更新 docs/INDEX.md
+
+**✅ 完成标志**：
+- docs/standards/DOCUMENTATION_STANDARD.md 存在
+- 包含实用的文档模板
+- docs/INDEX.md 已更新
+
+文件: docs/standards/DOCUMENTATION_STANDARD.md, docs/INDEX.md
+验证: cat docs/standards/DOCUMENTATION_STANDARD.md
+依赖: 创建模块结构规范文档
+
+---
+
+## STAGE ## name="内容扩充" mode="parallel"
+# 🎯 阶段目标：扩充各学习模块的示例内容
+# 📥 输入：完整的文档系统
+# 📤 输出：丰富的学习示例
+
+## TASK ##
+为 learn_cpp 补充智能指针示例
+
+**📖 背景**：
+智能指针是现代 C++ 的核心，需要详细的示例和说明。
+
+**🔨 要做什么**：
+1. 在 learn_cpp/02_memory_management/ 创建或补充智能指针示例
+2. 包括：
+   - unique_ptr 的基础和高级用法
+   - shared_ptr 的使用场景和注意事项
+   - weak_ptr 解决循环引用
+   - 与 Java 内存管理的对比
+3. 添加详细注释和最佳实践
+4. 更新 02_memory_management/README.md
+5. 更新 FEATURE_CODE_MAP.md
+
+**✅ 完成标志**：
+- 智能指针示例代码完整且可编译运行
+- 有详细的注释和 Java 对比
+- 相关文档已更新
+
+文件: learn_cpp/02_memory_management/**, FEATURE_CODE_MAP.md
+验证: g++ -std=c++17 learn_cpp/02_memory_management/*smart*.cpp
+
+---
+
+## TASK ##
+为 learn_nextjs 添加 Server Actions 完整示例
+
+**📖 背景**：
+Server Actions 是 Next.js 13+ 的重要特性，需要详细示例。
+
+**🔨 要做什么**：
+1. 在 learn_nextjs/02-advanced/01-form-handling/ 补充 Server Actions 示例
+2. 包括：
+   - 基础的表单提交
+   - 数据验证和错误处理
+   - 乐观更新（Optimistic Updates）
+   - 与传统 API Routes 的对比
+3. 添加 TypeScript 类型注解和详细注释
+4. 更新相关 README
+5. 更新 FEATURE_CODE_MAP.md
+
+**✅ 完成标志**：
+- Server Actions 示例完整且可运行
+- 有详细的类型注解和注释
+- 相关文档已更新
+
+文件: learn_nextjs/02-advanced/01-form-handling/**, FEATURE_CODE_MAP.md
+验证: cd learn_nextjs/02-advanced/01-form-handling && npm run build
+
+---
+
+## STAGE ## name="质量保证" mode="serial"
+# 🎯 阶段目标：检查和优化整个项目
+# 📥 输入：完成的所有文档和代码
+# 📤 输出：高质量的学习资源项目
+
+## TASK ##
+全面检查文档一致性
+
+**📖 背景**：
+确保所有文档链接正确，内容一致，没有遗漏。
+
+**🔨 要做什么**：
+1. 检查所有文档的内部链接是否有效
+2. 确认 FEATURE_CODE_MAP.md 覆盖所有模块
+3. 确认各模块的 CLAUDE.md 风格一致
+4. 检查学习路线图是否清晰
+5. 更新 PROJECT_STATUS.md 反映最新状态
+
+**✅ 完成标志**：
+- 所有文档链接有效
+- FEATURE_CODE_MAP.md 完整
+- PROJECT_STATUS.md 已更新
+
+文件: **/*.md
+验证: grep -r "](.*\.md)" *.md docs/**/*.md | grep -v "http"
+依赖: 所有前置任务完成
+
+---
+
+## TASK ##
+生成项目完善总结
+
+**📖 背景**：
+总结本次完善工作，记录重要决策。
+
+**🔨 要做什么**：
+1. 在 docs/decisions/INDEX.md 添加本次完善的 ADR
+2. 更新 PROJECT_STATUS.md 的"重大变更记录"
+3. 在根目录 README.md 更新文档完善度统计
+4. 生成简短的总结报告（在对话中展示，不生成文件）
+
+**✅ 完成标志**：
+- ADR 已添加
+- PROJECT_STATUS.md 已更新
+- README.md 统计数据已更新
+- 总结报告已生成
+
+文件: docs/decisions/INDEX.md, PROJECT_STATUS.md, README.md
+验证: cat docs/decisions/INDEX.md | tail -20
+依赖: 全面检查文档一致性

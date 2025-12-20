@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <title>跨语言桥接测试 - Learn Electron</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 30px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .test-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .test-section h2 {
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #667eea;
+    }
+
+    .test-group {
+      margin-bottom: 20px;
+    }
+
+    .test-group h3 {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .test-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .test-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .test-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .test-btn.success {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+
+    .test-btn.error {
+      background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    }
+
+    .output-section {
+      grid-column: 1 / -1;
+    }
+
+    .output {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .output::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .output::-webkit-scrollbar-track {
+      background: #2d2d2d;
+      border-radius: 10px;
+    }
+
+    .output::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 10px;
+    }
+
+    .output .success {
+      color: #4ec9b0;
+    }
+
+    .output .error {
+      color: #f48771;
+    }
+
+    .output .info {
+      color: #569cd6;
+    }
+
+    .output .timestamp {
+      color: #858585;
+    }
+
+    .clear-btn {
+      background: #555;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .clear-btn:hover {
+      background: #666;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .stat-item {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      color: #667eea;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🌉 跨语言桥接测试</h1>
+      <p>验证 Electron 中 Java JAR 和 TypeScript 动态调用及回调机制</p>
+      <button class="back-btn" id="backBtn">← 返回课程列表</button>
+    </div>
+
+    <div class="test-grid">
+      <!-- Java Bridge 测试 -->
+      <div class="test-section">
+        <h2>☕ Java Bridge 测试</h2>
+        
+        <div class="test-group">
+          <h3>1. 初始化</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="javaInitBtn">初始化 Java Bridge</button>
+          </div>
+        </div>
+
+        <div class="test-group">
+          <h3>2. 简单调用</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="javaSayHelloBtn" disabled>调用 sayHello()</button>
+            <button class="test-btn" id="javaGetVersionBtn" disabled>获取版本号</button>
+            <button class="test-btn" id="javaProcessDataBtn" disabled>数据处理</button>
+          </div>
+        </div>
+
+        <div class="test-group">
+          <h3>3. 回调测试</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="javaCallbackBtn" disabled>带回调的调用</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-label">初始化耗时</div>
+            <div class="stat-value" id="javaInitTime">-</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">执行耗时</div>
+            <div class="stat-value" id="javaExecTime">-</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">调用次数</div>
+            <div class="stat-value" id="javaCallCount">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TypeScript Bridge 测试 -->
+      <div class="test-section">
+        <h2>📜 TypeScript Bridge 测试</h2>
+        
+        <div class="test-group">
+          <h3>1. 初始化</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="tsInitBtn">初始化 TS Bridge</button>
+          </div>
+        </div>
+
+        <div class="test-group">
+          <h3>2. 简单调用</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="tsSayHelloBtn" disabled>调用 sayHello()</button>
+            <button class="test-btn" id="tsGetVersionBtn" disabled>获取版本号</button>
+            <button class="test-btn" id="tsProcessDataBtn" disabled>数据处理</button>
+          </div>
+        </div>
+
+        <div class="test-group">
+          <h3>3. 宿主能力注入</h3>
+          <div class="btn-group">
+            <button class="test-btn" id="tsInjectApiBtn" disabled>注入存储 API</button>
+            <button class="test-btn" id="tsCrudDemoBtn" disabled>CRUD 演示</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-label">初始化耗时</div>
+            <div class="stat-value" id="tsInitTime">-</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">执行耗时</div>
+            <div class="stat-value" id="tsExecTime">-</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">调用次数</div>
+            <div class="stat-value" id="tsCallCount">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 输出区域 -->
+      <div class="test-section output-section">
+        <h2>📝 测试输出</h2>
+        <button class="clear-btn" id="clearBtn">清空输出</button>
+        <div class="output" id="output">
+等待测试开始...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./bridge-test.ts"></script>
+</body>
+</html>
+
